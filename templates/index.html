@@ -10,14 +10,15 @@
     <link rel="stylesheet" media="screen" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
-
+    
 </head>
 <body>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                
+                <!-- jumbotron -->
                 <div class="jumbotron" style="text-align: center">
                     <div class="container">
                         <h1>Belly Button Bio-Diversity
@@ -30,19 +31,20 @@
                 
             </div>
         </div>
-
+        <!-- main body -->
         <div class="row">
+            <!-- side selection and summary panel -->
             <div class="col-md-2">
                 <div class="row">
                     <div class="col-md-12">
                         
-                        <div class="panel panel-default">
+                        <div class="panel panel-default" style="overflow:auto; overflow-wrap:break-word">
                             <div class="panel-body" style="background-color: #eee">
                                 <div class="form-group">
-                                    <label for="sample_id">Choose a Sample:</label>
-                                    <select class="form-control" id="sample_id">
-                                        <!-- dynamic list from js here -->
-                                      </select>
+                                    <label for="selDataset">Choose a Sample:</label>
+                                    <select id="selDataset" onchange="optionChanged(this.value)">
+
+                                    </select>
                                   </div>
                             </div>
                         </div>
@@ -52,12 +54,12 @@
                     <div class="row">
                         <div class="col-md-12">
                             
-                            <div class="panel panel-info">
+                            <div class="panel panel-info" style="overflow:auto; overflow-wrap:break-word">
                                   <div class="panel-heading">
                                         <h3 class="panel-title">Sample Metadata</h3>
                                   </div>
-                                  <div class="panel-body">
-                                        Panel content
+                                  <div id="sample-metadata" class="panel-body">
+                                        
                                   </div>
                             </div>
                             
@@ -65,7 +67,14 @@
                     </div>
                 
             </div>
+
+        <!-- pie chart -->
+        <div class="col-md-10" id = "piePlot">
+
         </div>
+        </div>
+
+
     </div>
     <!-- <script type="text/javascript">
     var names = {names_list}
