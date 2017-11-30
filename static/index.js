@@ -183,8 +183,9 @@ function init(sample){
             marker: {size: 15, color:'850000'},
             showlegend: false,
             name: 'Number of Washes',
-            text: washResponse,
-            hoverinfo: 'text+name'},
+            // text: washResponse,
+            hoverinfo: 'name'
+        },
         { values: [50/5, 50/5, 50/5, 50/5, 50/5, 50],
         rotation: 90,
         text: ['8-9', '6-7', '4-5', '2-3',
@@ -253,6 +254,7 @@ function updateBub(values, labels, names, sample_name){
 
 function updateMeter(newWashFreq){
     var level =newWashFreq*20;
+    console.log("New Wash Freq: " + newWashFreq)
     
     // Trig to calc meter point
     var degrees = 180 - level,
@@ -268,7 +270,8 @@ function updateMeter(newWashFreq){
     pathEnd = ' Z';
     var path = mainPath.concat(pathX,space,pathY,pathEnd);
 
-    Plotly.relayout("meter", "shapes[0].path", path)
+    Plotly.relayout("meter", "shapes[0].path", path);
+    
 
     console.log("Success Meter")
 };
@@ -358,7 +361,7 @@ function optionChanged(chosenSample){
             if (error) return console.warn(error);
 
             updateMeter(washResponse);
-            console.log(washResponse)
+            console.log(washResponse);
         });
                 
                   
